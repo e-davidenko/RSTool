@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="341.0" prefWidth="371.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.excecc.rservertool.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Button fx:id="checkPingStatus" mnemonicParsing="false" onAction="#checkPing" text="Проверить" translateX="130.0" translateY="45.0">
+        <VBox.margin>
+            <Insets />
+        </VBox.margin></Button>
+    <TextField fx:id="targetPC" prefHeight="26.0" prefWidth="0.0" promptText="Целевой ПК">
+        <VBox.margin>
+            <Insets right="80.0" />
+        </VBox.margin></TextField>
+    <CheckBox fx:id="rvtAR" mnemonicParsing="false" onAction="#onHelloButtonClick" text="RevitAR" />
+    <CheckBox fx:id="rvtKR" mnemonicParsing="false" text="RevitKR" />
+    <CheckBox mnemonicParsing="false" text="RevitEL" />
+    <CheckBox mnemonicParsing="false" text="RevitGP" />
+
+    <Label fx:id="welcomeText" />
+    <Button onAction="#onHelloButtonClick" text="Hello!" />
+    <Label fx:id="pingStatus">
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+    </Label>
+</VBox>
