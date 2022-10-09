@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RevitFileChecker extends Controller {
     private String serverName;
+
     @Override
     public String toString() {
         return serverName;

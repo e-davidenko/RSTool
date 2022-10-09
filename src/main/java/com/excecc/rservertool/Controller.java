@@ -5,6 +5,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -27,7 +28,6 @@ public class Controller {
     public CheckBox revitTX;
 
 
-
     public TextField targetPC;
     public Label pingStatus;
     public ChoiceBox<String> menuBox;
@@ -44,11 +44,13 @@ public class Controller {
             count++;
         }
     }
+
     @FXML
     protected void onButtonClick() throws IOException {
         welcomeText.setText(String.valueOf(targetPC.getCharacters()));
         revitFileEditor();
     }
+
     public void revitFileEditor() {
         StringBuilder targetFileEdit = new StringBuilder();
         targetFileEdit.append("\\\\");
@@ -57,6 +59,10 @@ public class Controller {
         targetFileEdit.append(menuBox.getValue());
         targetFileEdit.append("\\\\Config\\\\RSN.ini");
         File file = new File(targetFileEdit.toString());
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+        }
         try {
             FileWriter fileWriter = new FileWriter(file, false);
             if (revit2022.isSelected()) {
