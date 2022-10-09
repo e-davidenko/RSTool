@@ -1,28 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="341.0" prefWidth="371.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.excecc.rservertool.HelloController">
+<VBox alignment="CENTER" onMouseEntered="#updateSRV" prefHeight="380.0" prefWidth="305.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.excecc.rservertool.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Button fx:id="checkPingStatus" mnemonicParsing="false" onAction="#checkPing" text="Проверить" translateX="130.0" translateY="45.0">
+   <ChoiceBox fx:id="menuBox" minHeight="-Infinity" onContextMenuRequested="#updateSRV" onMouseClicked="#updateSRV" onMouseDragOver="#updateSRV" prefWidth="100.0" translateX="-83.0">
+      <VBox.margin>
+         <Insets bottom="-50.0" />
+      </VBox.margin></ChoiceBox>
+    <Button fx:id="checkPingStatus" defaultButton="true" mnemonicParsing="false" onAction="#checkPing" text="Проверить" translateX="100.0" translateY="45.0">
         <VBox.margin>
             <Insets />
-        </VBox.margin></Button>
-    <TextField fx:id="targetPC" prefHeight="26.0" prefWidth="0.0" promptText="Целевой ПК">
+        </VBox.margin>
+      <font>
+         <Font name="Arial Bold" size="12.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+    <TextField fx:id="targetPC" prefHeight="26.0" prefWidth="135.0" promptText="Целевой ПК">
         <VBox.margin>
             <Insets right="80.0" />
         </VBox.margin></TextField>
-    <CheckBox fx:id="rvtAR" mnemonicParsing="false" onAction="#onHelloButtonClick" text="RevitAR" />
-    <CheckBox fx:id="rvtKR" mnemonicParsing="false" text="RevitKR" />
-    <CheckBox mnemonicParsing="false" text="RevitEL" />
-    <CheckBox mnemonicParsing="false" text="RevitGP" />
-
+    <CheckBox fx:id="revit2022" mnemonicParsing="false" text="Revit2022">
+      <VBox.margin>
+         <Insets right="-13.0" />
+      </VBox.margin></CheckBox>
+    <CheckBox fx:id="revitAR" alignment="TOP_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="RevitAR" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets />
+      </VBox.margin></CheckBox>
+    <CheckBox fx:id="revitKR" mnemonicParsing="false" text="RevitKR">
+      <VBox.margin>
+         <Insets right="-2.0" />
+      </VBox.margin></CheckBox>
+    <CheckBox fx:id="revitEL" mnemonicParsing="false" text="RevitEL" />
+    <CheckBox fx:id="revitVK" mnemonicParsing="false" text="RevitVK">
+      <VBox.margin>
+         <Insets right="-3.0" />
+      </VBox.margin></CheckBox>
+    <CheckBox fx:id="revitOV" mnemonicParsing="false" text="RevitOV">
+      <VBox.margin>
+         <Insets right="-5.0" />
+      </VBox.margin></CheckBox>
+    <CheckBox fx:id="revitTX" mnemonicParsing="false" text="RevitTX">
+      <VBox.margin>
+         <Insets right="-3.0" />
+      </VBox.margin></CheckBox>
+    <Button onAction="#onButtonClick" text="Применить настройки">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor></Button>
     <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
+
     <Label fx:id="pingStatus">
         <VBox.margin>
             <Insets />
