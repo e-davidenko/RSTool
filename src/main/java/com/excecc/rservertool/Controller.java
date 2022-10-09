@@ -57,7 +57,8 @@ public class Controller {
         targetFileEdit.append(targetPC.getCharacters());
         targetFileEdit.append("\\C$\\ProgramData\\Autodesk\\Revit Server ");
         targetFileEdit.append(menuBox.getValue());
-        targetFileEdit.append("\\\\Config\\\\RSN.ini");
+        targetFileEdit.append("\\\\Config\\\\");
+        targetFileEdit.append("RSN.ini");
         File file = new File(targetFileEdit.toString());
         try {
             file.createNewFile();
