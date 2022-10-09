@@ -62,7 +62,7 @@ public class Controller {
         File file = new File(targetFileEdit.toString());
         try {
             file.createNewFile();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
         try {
             FileWriter fileWriter = new FileWriter(file, false);
