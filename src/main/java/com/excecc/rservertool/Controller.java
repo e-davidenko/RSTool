@@ -88,7 +88,7 @@ public class Controller {
             }
             if (revitKR.isSelected()) {
                 fileWriter.append(revitKR.getText());
-
+                fileWriter.append("\n");
             }
             if (revitTX.isSelected()) {
                 fileWriter.append(revitTX.getText());
