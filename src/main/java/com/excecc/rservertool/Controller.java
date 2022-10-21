@@ -55,7 +55,7 @@ public class Controller {
         StringBuilder targetFileEdit = new StringBuilder();
         targetFileEdit.append("\\\\");
         targetFileEdit.append(targetPC.getCharacters());
-        targetFileEdit.append("\\C$\\ProgramData\\Autodesk\\Revit Server ");
+        targetFileEdit.append("$AutoDesk\\Revit Server ");
         targetFileEdit.append(menuBox.getValue());
         targetFileEdit.append("\\\\Config\\\\");
         targetFileEdit.append("RSN.ini");
@@ -122,7 +122,7 @@ public class Controller {
         StringBuilder targetFile = new StringBuilder();
         targetFile.append("\\\\");
         targetFile.append(targetPC.getCharacters());
-        targetFile.append("\\C$\\ProgramData\\Autodesk\\Revit Server ");
+        targetFile.append("\\AutoDesk$\\Revit Server ");
         targetFile.append(menuBox.getValue());
         targetFile.append("\\\\Config\\\\RSN.ini");
         System.out.println(targetFile.toString());
