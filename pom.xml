@@ -9,6 +9,12 @@
     <version>0.1.0-PreAlfa</version>
     <name>RServerTool</name>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.2</junit.version>
@@ -30,6 +36,15 @@
             <artifactId>javafx-web</artifactId>
             <version>18.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.kdabir</groupId>
+            <artifactId>active-directory-lookup</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
@@ -106,6 +121,18 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.profesorfalken</groupId>
+            <artifactId>jPowerShell</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

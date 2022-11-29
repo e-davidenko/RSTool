@@ -1,19 +1,20 @@
 package com.excecc.rservertool;
 
+import com.profesorfalken.jpowershell.PowerShell;
+import com.profesorfalken.jpowershell.PowerShellResponse;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import org.json.simple.JSONObject;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 
 
 public class Controller {
@@ -27,9 +28,31 @@ public class Controller {
     public CheckBox revitVK;
     public CheckBox revitTX;
 
+    public ListView<String> listPC;
 
-    public TextField targetPC;
+    public Button refreshPC;
+
+    public void setListPC(ListView<String> listPC) {
+        this.listPC = listPC;
+    }
+
+    private int countLocal = 0;
+    @FXML
+    protected void getListPC() throws IOException {
+        if (countLocal == 0) {
+            welcomeText.setText("Подождите");
+            listPC.setItems(JsonConfig.getPCList().filtered(x -> x.length() > 2));
+            welcomeText.setText("Список ПК получен");
+            countLocal++;
+            pingStatus.setText("");
+            sumPC.setText("Количество ПК - " + JsonConfig.getPCList().filtered(x -> x.length() > 2).size());
+        }
+    }
+
+
+public String targetPC;
     public Label pingStatus;
+    public Label sumPC;
     public ChoiceBox<String> menuBox;
     private int count = 0;
 
@@ -47,23 +70,21 @@ public class Controller {
 
     @FXML
     protected void onButtonClick() throws IOException {
-        welcomeText.setText(String.valueOf(targetPC.getCharacters()));
+        welcomeText.setText(String.valueOf(targetPC));
         revitFileEditor();
+        welcomeText.setText("Успешно обновлены параметры на ПК " + targetPC);
     }
 
-    public void revitFileEditor() {
+    public void revitFileEditor() throws IOException {
         StringBuilder targetFileEdit = new StringBuilder();
         targetFileEdit.append("\\\\");
-        targetFileEdit.append(targetPC.getCharacters());
-        targetFileEdit.append("$AutoDesk\\Revit Server ");
+        targetFileEdit.append(targetPC);
+        targetFileEdit.append("\\AutoDesk$\\Revit Server ");
         targetFileEdit.append(menuBox.getValue());
-        targetFileEdit.append("\\\\Config\\\\");
+        targetFileEdit.append("\\Config\\");
         targetFileEdit.append("RSN.ini");
+        System.err.println("target file is " + targetFileEdit);
         File file = new File(targetFileEdit.toString());
-        try {
-            file.createNewFile();
-        } catch (IOException ignored) {
-        }
         try {
             FileWriter fileWriter = new FileWriter(file, false);
             if (revit2022.isSelected()) {
@@ -99,18 +120,14 @@ public class Controller {
 
 
         } catch (IOException e) {
+            file.createNewFile();
             welcomeText.setText("Проблемы с записью файла");
         }
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     @FXML
     protected void checkPing() {
+        targetPC = listPC.getSelectionModel().getSelectedItem().replace("[", "").replace("]", "").strip();
         RevitFileChecker r2022 = new RevitFileChecker("2022");
         RevitFileChecker ar = new RevitFileChecker("AR");
         RevitFileChecker kr = new RevitFileChecker("KR");
@@ -121,7 +138,7 @@ public class Controller {
 
         StringBuilder targetFile = new StringBuilder();
         targetFile.append("\\\\");
-        targetFile.append(targetPC.getCharacters());
+        targetFile.append(targetPC);
         targetFile.append("\\AutoDesk$\\Revit Server ");
         targetFile.append(menuBox.getValue());
         targetFile.append("\\\\Config\\\\RSN.ini");
@@ -143,9 +160,17 @@ public class Controller {
             ov.checkExist(data, revitOV);
             tx.checkExist(data, revitTX);
             vk.checkExist(data, revitVK);
-            welcomeText.setText("Успешно получена информация с ПК " + targetPC.getCharacters());
+            welcomeText.setMaxWidth(320);
+            welcomeText.setWrapText(true);
+            welcomeText.setText("Успешно получена информация с ПК " + targetPC);
         } catch (Exception e) {
             welcomeText.setText("Проблемы с подключением к ПК");
         }
+    }
+
+    public void updatePCList(MouseEvent mouseEvent) throws IOException {
+
+        JsonConfig.updatePCList();
+
     }
 }

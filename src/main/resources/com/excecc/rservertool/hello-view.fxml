@@ -6,62 +6,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" onMouseEntered="#updateSRV" prefHeight="380.0" prefWidth="305.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.excecc.rservertool.Controller">
+<VBox alignment="CENTER" onMouseEntered="#updateSRV" prefHeight="554.0" prefWidth="606.0" spacing="20.0" style="-fx-background-color: #1b2b59;" styleClass="#476ea8" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.excecc.rservertool.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <ChoiceBox fx:id="menuBox" minHeight="-Infinity" onContextMenuRequested="#updateSRV" onMouseClicked="#updateSRV" onMouseDragOver="#updateSRV" prefWidth="100.0" translateX="-83.0">
-      <VBox.margin>
-         <Insets bottom="-50.0" />
-      </VBox.margin></ChoiceBox>
-    <Button fx:id="checkPingStatus" defaultButton="true" mnemonicParsing="false" onAction="#checkPing" text="Проверить" translateX="100.0" translateY="45.0">
-        <VBox.margin>
-            <Insets />
-        </VBox.margin>
-      <font>
-         <Font name="Arial Bold" size="12.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor></Button>
-    <TextField fx:id="targetPC" prefHeight="26.0" prefWidth="135.0" promptText="Целевой ПК">
-        <VBox.margin>
-            <Insets right="80.0" />
-        </VBox.margin></TextField>
-    <CheckBox fx:id="revit2022" mnemonicParsing="false" text="Revit2022">
-      <VBox.margin>
-         <Insets right="-13.0" />
-      </VBox.margin></CheckBox>
-    <CheckBox fx:id="revitAR" alignment="TOP_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="RevitAR" VBox.vgrow="ALWAYS">
-      <VBox.margin>
-         <Insets />
-      </VBox.margin></CheckBox>
-    <CheckBox fx:id="revitKR" mnemonicParsing="false" text="RevitKR">
-      <VBox.margin>
-         <Insets right="-2.0" />
-      </VBox.margin></CheckBox>
-    <CheckBox fx:id="revitEL" mnemonicParsing="false" text="RevitEL" />
-    <CheckBox fx:id="revitVK" mnemonicParsing="false" text="RevitVK">
-      <VBox.margin>
-         <Insets right="-3.0" />
-      </VBox.margin></CheckBox>
-    <CheckBox fx:id="revitOV" mnemonicParsing="false" text="RevitOV">
-      <VBox.margin>
-         <Insets right="-5.0" />
-      </VBox.margin></CheckBox>
-    <CheckBox fx:id="revitTX" mnemonicParsing="false" text="RevitTX">
-      <VBox.margin>
-         <Insets right="-3.0" />
-      </VBox.margin></CheckBox>
-    <Button onAction="#onButtonClick" text="Применить настройки">
-        <cursor>
-            <Cursor fx:constant="HAND" />
-        </cursor></Button>
-    <Label fx:id="welcomeText" />
-
-    <Label fx:id="pingStatus">
-        <VBox.margin>
-            <Insets />
-        </VBox.margin>
-    </Label>
+   <Pane onMouseEntered="#getListPC" prefHeight="494.0" prefWidth="521.0" style="-fx-background-color: #1b2b59;">
+      <children>
+         <ChoiceBox fx:id="menuBox" layoutX="455.0" layoutY="29.0" minHeight="-Infinity" onContextMenuRequested="#updateSRV" onMouseClicked="#updateSRV" onMouseDragOver="#updateSRV" prefWidth="100.0" />
+          <Button fx:id="checkPingStatus" defaultButton="true" layoutX="362.0" layoutY="300.0" mnemonicParsing="false" onAction="#checkPing" text="Проверить ПК">
+            <font>
+               <Font name="Arial Bold" size="15.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+          <CheckBox fx:id="revit2022" layoutX="320.0" layoutY="96.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="89.0" text="Revit2022" textFill="WHITE" />
+          <CheckBox fx:id="revitAR" alignment="TOP_RIGHT" layoutX="320.0" layoutY="125.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="RevitAR" textFill="WHITE" />
+          <CheckBox fx:id="revitKR" layoutX="320.0" layoutY="159.0" mnemonicParsing="false" text="RevitKR" textFill="WHITE" />
+          <CheckBox fx:id="revitEL" layoutX="436.0" layoutY="159.0" mnemonicParsing="false" text="RevitEL" textFill="WHITE" />
+          <CheckBox fx:id="revitVK" layoutX="320.0" layoutY="190.0" mnemonicParsing="false" text="RevitVK" textFill="WHITE" />
+          <CheckBox fx:id="revitOV" layoutX="436.0" layoutY="125.0" mnemonicParsing="false" text="RevitOV" textFill="WHITE" />
+          <CheckBox fx:id="revitTX" layoutX="435.0" layoutY="96.0" mnemonicParsing="false" text="RevitTX" textFill="WHITE" />
+          <Button layoutX="338.0" layoutY="357.0" onAction="#onButtonClick" style="-fx-background-color: #a0dea2;" text="Применить настройки">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+          <Label fx:id="welcomeText" layoutX="291.0" layoutY="394.0" prefHeight="78.0" prefWidth="269.0" textFill="#f7f7f7">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <Label layoutX="296.0" layoutY="33.0" prefHeight="17.0" prefWidth="150.0" text="Выберите версию Revit:" textFill="WHITE" />
+         <ListView fx:id="listPC" layoutX="25.0" layoutY="59.0" prefHeight="427.0" prefWidth="260.0" />
+      
+          <Label fx:id="pingStatus" layoutX="351.0" layoutY="212.0" prefHeight="17.0" prefWidth="210.0" text="Программа загружается..." textAlignment="CENTER" textFill="#fa0202" />
+         <ToolBar layoutX="25.0" layoutY="17.0"  prefHeight="37.0" prefWidth="260.0">
+           <items>
+             <Button mnemonicParsing="false" text="Обновить список" onMouseClicked="#updatePCList" disable="true"/>
+               <Label fx:id="sumPC"/>
+           </items>
+         </ToolBar>
+      </children>
+   </Pane>
 </VBox>
